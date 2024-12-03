@@ -1,9 +1,8 @@
 const { configureStore } = require("@reduxjs/toolkit");
-import partnersSlice from "./partners-list/partnersListSlice";
-
+import coursesListSLice from "./courses/coursesListSLice";
 const store = configureStore({
   reducer: {
-    partners: partnersSlice,
+    courses: coursesListSLice,
   },
 });
 
