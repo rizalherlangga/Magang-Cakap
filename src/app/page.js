@@ -1,3 +1,9 @@
+import VoucherCard from "@/components/fragments/voucher";
+
 export default function Home() {
-  return <div>This is Homepage</div>;
+  return (
+    <div>
+      <VoucherCard />
+    </div>
+  );
 }
