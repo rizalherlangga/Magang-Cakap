@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+
 import { StoreProvider } from "@/store/StoreProvider";
+import { HeaderTemplate } from "@/components/template/header-template";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,8 @@ export default function RootLayout({ children }) {
     <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="flex flex-col bg-white overflow-hidden">
-            <Header />
+          <div className="flex flex-col bg-white overflow-hidden w-full max-w-7xl mx-auto px-4 md:px-4 ">
+            <HeaderTemplate />
             {children}
           </div>
         </body>
