@@ -1,28 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import axiosInstance from "@/lib/axios";
+const initialState = {
+  list: [],
+  selectedCategory: "",
+  loading: false,
+  error: null,
+};
 
 export const fetchCategoriesThunk = createAsyncThunk(
   "categories/fetchCategories",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get("/categories");
-
-      return response.data;
+      const data = await fetchCategories();
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.message || "Failed to fetch categories");
     }
   }
 );
 
 const categoriesSlice = createSlice({
   name: "categories",
-  initialState: {
-    list: [],
-    selectedCategory: "",
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     setSelectedCategory: (state, action) => {
       state.selectedCategory = action.payload;
@@ -37,7 +36,6 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategoriesThunk.fulfilled, (state, action) => {
         state.list = action.payload.data;
         state.loading = false;
-        // console.log(action.payload);
       })
       .addCase(fetchCategoriesThunk.rejected, (state, action) => {
         state.error = action.payload || "Failed to fetch categories";
