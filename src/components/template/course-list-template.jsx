@@ -9,6 +9,7 @@ import {
 import {
   fetchCoursesThunk,
   incrementPage,
+  resetCourses,
   setFilter,
   setOrderBy,
 } from "@/store/courses/coursesListSLice";
@@ -32,6 +33,7 @@ const CourseListsTemplate = () => {
   const { list: categories, selectedCategory } = useSelector(
     (state) => state.categories
   );
+  console.log(categories);
 
   const filteredCourses = courses.filter((course) => {
     if (filter.prakerjaFilter) {
