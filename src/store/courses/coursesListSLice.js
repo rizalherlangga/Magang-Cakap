@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "@/lib/axios";
+
+import { fetchCourses } from "@/lib/api";
 
 const initialState = {
   list: [],
@@ -9,37 +10,32 @@ const initialState = {
   orderBy: "",
   filter: { prakerjaFilter: false },
   error: null,
+  highlightedCourses: [],
 };
 
 export const fetchCoursesThunk = createAsyncThunk(
   "courses/fetchCourses",
-  async (
-    { page = 1, limit = 10, categoriesId, courseOrderBy },
-    { rejectWithValue }
-  ) => {
-    const params = {
-      page,
-      limit,
-      ...(categoriesId && { categoriesId }),
-      ...(courseOrderBy && { courseOrderBy }),
-    };
-
-    // console.log("Params in Thunk:", params);
-
+  async (args, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get("/course/list", { params });
-      return response.data;
+      const data = await fetchCourses(args);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return rejectWithValue(error.message || "Failed to fetch courses");
     }
   }
 );
 
 export const fetchHighlightedCoursesThunk = createAsyncThunk(
-  "courses/fetchHighlight",
-  async () => {
-    const response = await axiosInstance.get("/course/highlight");
-    return response.data;
+  "courses/fetchHighlightedCourses",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await fetchHighlightedCourses();
+      return data;
+    } catch (error) {
+      return rejectWithValue(
+        error.message || "Failed to fetch highlighted courses"
+      );
+    }
   }
 );
 
