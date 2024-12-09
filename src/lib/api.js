@@ -51,3 +51,19 @@ export const fetchHighlightedCourses = async () => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+export const fetchPartnersList = async ({ partnerType }) => {
+  try {
+    console.log("Fetching partners with partnerType:", partnerType);
+    const response = await axiosInstance.get("/partner", {
+      params: {
+        partnerType,
+        showAll: true,
+      },
+    });
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
