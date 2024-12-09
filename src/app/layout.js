@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="flex flex-col bg-white overflow-hidden w-full max-w-7xl mx-auto px-4 md:px-4 ">
+          <div className="flex flex-col bg-white w-full max-w-7xl mx-auto px-4 md:px-4 ">
             <HeaderTemplate />
             {children}
           </div>
