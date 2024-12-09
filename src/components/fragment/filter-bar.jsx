@@ -60,16 +60,14 @@ export default function FilterBar({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="w-full flex flex-wrap justify-between gap-2 pt-4">
-        <div>
+      <div className="w-full flex flex-wrap justify-between gap-6 pt-4 md:border-b border-b-slate-500">
+        <div className="max-md:w-full max-md:border-b border-b-slate-500">
           {orderOptions.map((option) => (
             <Button
               key={option.value}
               variant="ghost"
-              className={`px-2 py-2 text-base text-black ${
-                orderBy === option.value
-                  ? "border-b-2 border-black hover:bg-transparent"
-                  : " hover:bg-transparent"
+              className={`p-2 ${
+                orderBy === option.value ? "border-b-2 border-black" : ""
               }`}
               onClick={() => onOrderChange(option.value)}
             >
@@ -78,14 +76,14 @@ export default function FilterBar({
           ))}
         </div>
 
-        <div className="text-base font-semibold text-black  content-center">
+        <div className="text-base font-medium text-black content-center">
           <label>
             <input
               type="checkbox"
               checked={onFilterPrakerja}
               onChange={(e) => onFilterPrakerjaChange(e.target.checked)}
             />
-            <span className="px-2">Kursus Prakerja</span>
+            <span className="px-2 ">Kursus Prakerja</span>
           </label>
         </div>
       </div>

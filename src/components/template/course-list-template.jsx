@@ -1,24 +1,26 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import CourseCard from "../fragments/course-card";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   fetchCategoriesThunk,
+  setCategories,
   setSelectedCategory,
 } from "@/store/courses/categoriesSlice";
 import {
   fetchCoursesThunk,
   incrementPage,
   resetCourses,
+  setCourses,
   setFilter,
   setOrderBy,
 } from "@/store/courses/coursesListSLice";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import FilterBar from "../fragments/filter-bar";
-import Loader from "../fragments/Loader";
+import FilterBar from "../fragment/filter-bar";
+import CourseCard from "../fragment/course-card";
+import Loader from "../fragment/Loader";
 
-const CourseListsTemplate = () => {
+const CourseListsTemplate = ({ initialCategories, initialCourses }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const {
@@ -30,10 +32,8 @@ const CourseListsTemplate = () => {
     filter,
   } = useSelector((state) => state.courses);
 
-  const { list: categories, selectedCategory } = useSelector(
-    (state) => state.categories
-  );
-  console.log(categories);
+  // console.log(courses);
+  const { category } = useSelector((state) => state.categories);
 
   const filteredCourses = courses.filter((course) => {
     if (filter.prakerjaFilter) {
@@ -42,11 +42,15 @@ const CourseListsTemplate = () => {
     return true;
   });
 
-  const handleFilterChange = (selectedCategory) => {
+  const handleFilterChange = (sCategory) => {
     dispatch(resetCourses());
-    dispatch(setSelectedCategory(selectedCategory));
+    dispatch(setSelectedCategory(sCategory));
     dispatch(
-      fetchCoursesThunk({ page: 1, limit: 10, categoriesId: selectedCategory })
+      fetchCoursesThunk({
+        page: 1,
+        limit: 10,
+        categoriesId: sCategory,
+      })
     );
   };
   const handleOrderChange = (orderBy) => {
@@ -56,7 +60,7 @@ const CourseListsTemplate = () => {
       fetchCoursesThunk({
         page: 1,
         limit: 10,
-        categoriesId: selectedCategory,
+        categoriesId: category,
         courseOrderBy: orderBy,
       })
     );
@@ -69,44 +73,37 @@ const CourseListsTemplate = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchCategoriesThunk());
-    dispatch(fetchCoursesThunk({ page: 1, limit: 10 }));
+    dispatch(setCategories(initialCategories));
+    dispatch(setCourses(initialCourses));
   }, [dispatch]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
+      const isNearBottom =
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 100
-      ) {
-        if (!loading && hasMore) {
-          dispatch(incrementPage());
-        }
+        document.documentElement.offsetHeight - 100;
+      if (isNearBottom && !loading && hasMore) {
+        dispatch(incrementPage());
+        dispatch(setCourses(initialCourses));
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, hasMore, dispatch]);
-
-  useEffect(() => {
-    if (page > 1) {
-      dispatch(fetchCoursesThunk({ page, limit: 10 }));
-    }
-  }, [page, selectedCategory, dispatch]);
+  }, [hasMore, loading, page, dispatch]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <>
       <FilterBar
-        categories={categories}
-        selectedCategory={selectedCategory}
+        categories={initialCategories}
+        selectedCategory={category}
         onFilterChange={handleFilterChange}
         onOrderChange={handleOrderChange}
         orderBy={orderBy}
         onFilterPrakerja={filter.prakerjaFilter}
         onFilterPrakerjaChange={handleFilterPrakerjaChange}
       />
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-10 border-t border-t-slate-500">
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-10 ">
         {filteredCourses.map((course, index) => (
           <CourseCard
             key={`${course.courseId}-${index}`}
@@ -116,10 +113,7 @@ const CourseListsTemplate = () => {
         ))}
       </div>
       {loading && <Loader />}
-      {!hasMore && (
-        <p className="text-center text-gray-500">No more courses to load.</p>
-      )}
-    </div>
+    </>
   );
 };
 export default CourseListsTemplate;
