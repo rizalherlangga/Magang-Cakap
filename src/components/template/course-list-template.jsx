@@ -16,9 +16,9 @@ import {
   setFilter,
   setOrderBy,
 } from "@/store/courses/coursesListSLice";
-import FilterBar from "../fragment/filter-bar";
-import CourseCard from "../fragment/course-card";
-import Loader from "../fragment/Loader";
+import FilterBar from "../fragments/filter-bar";
+import CourseCard from "../fragments/course-card";
+import Loader from "../fragments/loader";
 
 const CourseListsTemplate = ({ initialCategories, initialCourses }) => {
   const router = useRouter();

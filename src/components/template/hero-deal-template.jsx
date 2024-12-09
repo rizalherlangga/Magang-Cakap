@@ -1,5 +1,5 @@
-import BannerCarousel from "../fragment/banner-carousel";
-import Voucher from "../fragment/voucher";
+import BannerCarousel from "../fragments/banner-carousel";
+import Voucher from "../fragments/voucher";
 import { Skeleton } from "../ui/skeleton";
 
 const HeroDealTemplate = ({ banners }) => {
