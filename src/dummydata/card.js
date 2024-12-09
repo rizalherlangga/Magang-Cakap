@@ -1,43 +1,43 @@
 const cards = [
   {
-    title: "Kursus A",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar React JS",
-    content: "Konten 1.",
+    price: "Konten 1.",
   },
   {
-    title: "Kursus B",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Node.js",
-    content: "Konten 2.",
+    price: "Konten 2.",
   },
   {
-    title: "Kursus C",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Next.js",
-    content: "Konten 3.",
+    price: "Konten 3.",
   },
   {
-    title: "Kursus D",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Tailwind CSS",
-    content: "Konten 4.",
+    price: "Konten 4.",
   },
   {
-    title: "Kursus E",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Prisma ORM",
-    content: "Konten 5.",
+    price: "Konten 5.",
   },
   {
-    title: "Kursus F",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Sequalize",
-    content: "Konten 6.",
+    price: "Konten 6.",
   },
   {
-    title: "Kursus G",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar Py",
-    content: "Konten 6.",
+    price: "Konten 6.",
   },
   {
-    title: "Kursus H",
+    image: "https://via.placeholder.com/150x150",
     description: "Belajar JS",
-    content: "Konten 7.",
+    price: "Konten 7.",
   },
 ];
 

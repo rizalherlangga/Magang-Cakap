@@ -6,35 +6,41 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "../ui/button";
+import CardFragment from "../fragments/card-fragment";
 
 export default function CourseCarousel({
-  cards,
+  title = "Card Title",
+  cards = [],
   currentIndex,
   handleNext,
   handleBack,
-  cardsPerView,
+  cardsPerView = 4,
+  cardAction = () => {},
 }) {
   return (
     <section className="text-black">
       <div className="flex justify-between items-center my-5">
-        <p className="text-lg">KURSUS TERKAIT</p>
+        <p className="text-lg font-semibold">{title}</p>
         <div className="flex gap-2">
-          <button
+          <Button
             onClick={handleBack}
-            className="px-4 py-2 bg-gray-300 rounded-md disabled:opacity-50"
+            className="p-2 bg-gray-300 rounded-md disabled:opacity-50 hover:bg-secondary"
             disabled={currentIndex === 0}
           >
-            Back
-          </button>
-          <button
+            <ChevronLeft className="w-6 h-6 text-primary" />
+          </Button>
+          <Button
             onClick={handleNext}
-            className="px-4 py-2 bg-gray-300 rounded-md disabled:opacity-50"
+            className="p-2 bg-gray-300 rounded-md disabled:opacity-50 hover:bg-secondary"
             disabled={currentIndex + cardsPerView >= cards.length}
           >
-            Next
-          </button>
+            <ChevronRight className="w-6 h-6 text-primary" />
+          </Button>
         </div>
       </div>
+
       <div className="overflow-hidden">
         <div
           className="flex gap-4 transition-transform duration-300"
@@ -43,20 +49,19 @@ export default function CourseCarousel({
           }}
         >
           {cards.map((card, index) => (
-            <Card className="w-1/4 flex-shrink-0" key={index}>
-              <CardHeader>
-                <CardTitle>{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>{card.content}</p>
-              </CardContent>
-              <CardFooter>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded-md">
-                  Read More
-                </button>
-              </CardFooter>
-            </Card>
+            <CardFragment
+              className="w-1/4 flex-shrink-0"
+              key={index}
+              header={
+                <img
+                  src={card.image}
+                  alt={`Card ${index}`}
+                  className="w-full h-auto"
+                />
+              }
+              content={<p>{card.description}</p>}
+              footer={<p className="text-lg font-bold">{card.price}</p>}
+            />
           ))}
         </div>
       </div>
