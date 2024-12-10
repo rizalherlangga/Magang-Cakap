@@ -1,28 +1,10 @@
-"use client";
-
 import BannerPage from "@/components/fragments/banner-page";
-import CourseCarousel from "@/components/template/card-carousel";
-import cards from "@/dummydata/card";
-import { useState } from "react";
+import AboutCourseTemplate from "@/components/template/about-course-template";
+import CarouselCourse from "@/components/template/carousel-course";
+import { fetchHighlightedCourses } from "@/lib/api";
 
-export default function DetailList() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNext = () => {
-    if (currentIndex + 4 < cards.length) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  const handleCardAction = (card) => {
-    console.log("Card clicked:", card);
-  };
+export default async function DetailList() {
+  const courseHighlight = await fetchHighlightedCourses();
 
   return (
     <div className="text-white">
@@ -41,15 +23,7 @@ export default function DetailList() {
         </div>
       </BannerPage>
       <AboutCourseTemplate />
-      <CourseCarousel
-        title="Kursus Terkait"
-        cards={cards}
-        currentIndex={currentIndex}
-        handleNext={handleNext}
-        handleBack={handleBack}
-        cardsPerView={4}
-        cardAction={handleCardAction}
-      />
+      <CarouselCourse courses={courseHighlight} tittle={"Kursus Terkait"} />
     </div>
   );
 }

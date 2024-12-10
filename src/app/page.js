@@ -1,13 +1,16 @@
+import CarouselCourse from "@/components/template/carousel-course";
 import HeroDealTemplate from "@/components/template/hero-deal-template";
-import { fetchBanners } from "@/lib/api";
+import { fetchBanners, fetchHighlightedCourses } from "@/lib/api";
 
-const HomePage = async () => {
+async function HomePage() {
   const banners = await fetchBanners();
+  const courseHighlight = await fetchHighlightedCourses();
   return (
-    <div>
+    <>
       <HeroDealTemplate banners={banners} />
-    </div>
+      <CarouselCourse tittle={"Kursus Terlaris"} courses={courseHighlight} />
+    </>
   );
-};
+}
 
 export default HomePage;

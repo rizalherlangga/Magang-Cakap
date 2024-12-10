@@ -5,9 +5,9 @@ import { Badge } from "../ui/badge";
 
 function CourseCard({ course, onClickChange }) {
   return (
-    <Card className="flex flex-col justify-between w-full max-w-md cursor-pointer">
+    <Card className="flex flex-col justify-between w-full max-w-md cursor-pointer ">
       <div
-        className="h-48 relative"
+        className="h-44 relative "
         onClick={() => onClickChange(course.courseId)}
       >
         {course.thumbnails?.[0]?.url && (
@@ -15,7 +15,7 @@ function CourseCard({ course, onClickChange }) {
             <img
               src={course.thumbnails[0].url}
               alt={`Thumbnail for ${course.courseName}`}
-              className="w-full h-48 object-cover rounded-t-xl "
+              className="w-full h-44 object-cover rounded-t-xl "
             />
           </div>
         )}
@@ -32,15 +32,15 @@ function CourseCard({ course, onClickChange }) {
           ) : null}
         </div>
       </div>
-      <CardContent>
-        <CardTitle className="text-lg font-semibold">
+      <CardContent className="h-36">
+        <CardTitle className="text-medium font-semibold mt-2">
           {course.courseName}
         </CardTitle>
         <div className="flex gap-2 w-full pt-2">
           <div className="relative">
             <img
               className="rounded-full object-cover w-5"
-              src={course.partner.partnerLogo.thumbnail}
+              src={course?.partner?.partnerLogo?.thumbnail}
               alt=""
             />
           </div>
@@ -51,11 +51,11 @@ function CourseCard({ course, onClickChange }) {
         {course?.reviews?.rating > 0 ? (
           <StarRating
             rating={course?.reviews?.rating}
-            total={course.reviews.total}
+            total={course?.reviews?.total}
           />
         ) : null}
       </CardContent>
-      <CardFooter className="flex flex-col items-start gap-2">
+      <CardFooter className="flex flex-col items-start">
         <div className="flex gap-2 text-sm font-semibold">
           <span className="line-through text-slate-500">
             {formatCurrency(course.basicPrice)}
@@ -64,13 +64,13 @@ function CourseCard({ course, onClickChange }) {
             <span className="text-red-500 bg-red-100 px-1">{course.label}</span>
           ) : null}
         </div>
-        {course.finalPrice > 0 ? (
-          <span className="text-lg font-bold text-primary">
-            {formatCurrency(course.finalPrice)}
-          </span>
-        ) : (
-          <span className="text-lg font-bold text-primary">Gratis</span>
-        )}
+        <div className="text-lg font-bold text-primary">
+          {course.finalPrice > 0 ? (
+            <span>{formatCurrency(course?.finalPrice)}</span>
+          ) : (
+            <span>Gratis</span>
+          )}
+        </div>
       </CardFooter>
     </Card>
   );
