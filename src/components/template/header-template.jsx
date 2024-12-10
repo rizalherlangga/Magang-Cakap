@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import NavbarItems from "../fragments/navbar-items";
 import { InputContent } from "../ui/input-content";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 export const HeaderTemplate = () => {
   return (
@@ -28,6 +29,9 @@ export const HeaderTemplate = () => {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-xs md:hidden">
+            <DialogTitle>
+              <span className="sr-only">Menu</span>
+            </DialogTitle>
             <NavbarItems />
           </SheetContent>
         </Sheet>

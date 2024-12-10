@@ -67,3 +67,14 @@ export const fetchPartnersList = async ({ partnerType }) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+export const fetchDetail = async (id, platform = "WEB") => {
+  try {
+    const response = await axiosInstance.get(
+      `/course/detail/${id}?platform=${platform}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
