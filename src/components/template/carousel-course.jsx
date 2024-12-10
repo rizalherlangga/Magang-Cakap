@@ -29,7 +29,7 @@ function CarouselCourse({ tittle, courses }) {
   return (
     <section className="overflow-hidden w-full my-6">
       <div className="mb-4">
-        <span className="text-lg font-medium text-primary">{tittle}</span>
+        <span className="text-2xl font-medium text-primary">{tittle}</span>
         <div className="w-full flex gap-2 justify-end">
           <Button
             variant="outline"

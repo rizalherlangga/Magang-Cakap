@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { StoreProvider } from "@/store/StoreProvider";
 import { HeaderTemplate } from "@/components/template/header-template";
+import FooterTemplate from "@/components/template/footer-template";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,10 @@ export default function RootLayout({ children }) {
           <div className="flex flex-col bg-white w-full max-w-7xl mx-auto px-4 md:px-4 ">
             <HeaderTemplate />
             {children}
+          </div>
+          <div className="bg-primary">
+            {" "}
+            <FooterTemplate />
           </div>
         </body>
       </html>
