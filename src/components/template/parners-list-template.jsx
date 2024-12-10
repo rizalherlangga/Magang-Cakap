@@ -1,14 +1,14 @@
 "use client";
 
 import { Button } from "../ui/button";
-import CardLogo from "../fragment/card-logo";
+import CardLogo from "../fragments/card-logo";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBothPartnersThunk,
   setSelectedCategory,
 } from "@/store/partners-list/partnersListSlice";
 import { useEffect } from "react";
-import CardLogoLoader from "../fragment/card-logo-loader";
+import CardLogoLoader from "../fragments/card-logo-loader";
 
 export default function PartnersListTemplate() {
   const dispatch = useDispatch();
