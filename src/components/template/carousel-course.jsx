@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import CourseCard from "../fragments/course-card";
+import { useRouter } from "next/navigation";
 
 function CarouselCourse({ tittle, courses }) {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleBack = () => {
@@ -20,6 +22,9 @@ function CarouselCourse({ tittle, courses }) {
     );
   };
 
+  const handleCourseClick = (id) => {
+    router.push(`/courses/${id}`);
+  };
   const cardsPerView = 4;
   return (
     <section className="overflow-hidden w-full my-6">
@@ -54,7 +59,7 @@ function CarouselCourse({ tittle, courses }) {
               key={`${item.courseId}-${index}`}
               className="w-[calc(25%-1rem)] flex-shrink-0 "
             >
-              <CourseCard course={item} />
+              <CourseCard course={item} onClickChange={handleCourseClick} />
             </div>
           ))}
         </div>
