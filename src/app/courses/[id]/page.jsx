@@ -1,7 +1,7 @@
 "use client";
 
-import BannerPage from "@/components/fragment/banner-page";
-import ListDescription from "@/components/fragment/list-description";
+import BannerPage from "@/components/fragments/banner-page";
+import ListDescription from "@/components/fragments/list-description";
 import AboutCourseTemplate from "@/components/template/about-course-template";
 import CourseCarousel from "@/components/template/card-carousel";
 import cards from "@/dummydata/card";

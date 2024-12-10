@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
-import CardFragment from "../fragment/card-fragment";
+import CardFragment from "../fragments/card-fragment";
 
 export default function CourseCarousel({
   title = "Card Title",

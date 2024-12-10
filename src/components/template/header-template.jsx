@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
-import NavbarItems from "../fragment/navbar-items";
+import NavbarItems from "../fragments/navbar-items";
 import { InputContent } from "../ui/input-content";
 
 export const HeaderTemplate = () => {
