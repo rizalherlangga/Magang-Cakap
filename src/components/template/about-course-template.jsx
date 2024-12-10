@@ -1,5 +1,5 @@
-import AboutCourse from "../fragments/detail-course/about-course";
-import PriceCourse from "../fragments/detail-course/price-course";
+import AboutCourse from "../fragment/detail-course/about-course";
+import PriceCourse from "../fragment/detail-course/price-course";
 
 const AboutCourseTemplate = () => {
   return (

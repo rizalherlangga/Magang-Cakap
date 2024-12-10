@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import CourseCard from "../fragments/course-card";
+import CourseCard from "../fragment/course-card";
 import {
   fetchCategoriesThunk,
   setSelectedCategory,
@@ -15,8 +15,8 @@ import {
 } from "@/store/courses/coursesListSLice";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import FilterBar from "../fragments/filter-bar";
-import Loader from "../fragments/Loader";
+import FilterBar from "../fragment/filter-bar";
+import Loader from "../fragment/Loader";
 
 const CourseListsTemplate = () => {
   const router = useRouter();
