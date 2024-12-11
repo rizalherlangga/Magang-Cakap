@@ -1,9 +1,9 @@
 import React from "react";
 
-const IconC = ({ src }) => {
+const IconC = ({ src, className }) => {
   return (
-    <div className="border p-1.5 rounded" href={"#"}>
-      <img className="w-4" src={src} alt="whatsapp" />
+    <div className="border py-1.5 px-2 rounded">
+      <img className={className} src={src} alt="icon" />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import {
 
 const FooterBottom = () => {
   return (
-    <div className="text-sm flex flex-col justify-between items-center gap-4 py-5 border-t lg:flex-row">
+    <div className="text-sm flex flex-col justify-between items-center gap-4 py-6 border-t lg:flex-row">
       <p className=" ">© Copyright 2024 Cakap | PT Cerdas Digital Nusantara</p>
       <Select defaultValue="indonesia">
         <SelectTrigger className="w-28">
