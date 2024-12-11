@@ -2,6 +2,8 @@
 
 import { Button } from "../ui/button";
 import CardLogo from "../fragments/card-logo";
+import BannerPage from "../fragments/banner-page";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBothPartnersThunk,
@@ -22,6 +24,16 @@ export default function PartnersListTemplate() {
 
   return (
     <div className="mb-20">
+      <div className="pt-4">
+        <BannerPage>
+          <div className="h-44 relative w-full">
+            <h1 className="text-start font-bold text-3xl absolute bottom-4 w-full">
+              Mitra Upskill
+            </h1>
+          </div>
+        </BannerPage>
+      </div>
+
       <div>
         <Button
           variant="ghost"
