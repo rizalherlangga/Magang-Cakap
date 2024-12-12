@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import SectionTemplate from "./section-template";
 import Navigation from "../fragments/navigation";
 
-function CarouselCourse({ title, description, courses }) {
+function CourseTemplate({ title, description, courses }) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,7 +26,6 @@ function CarouselCourse({ title, description, courses }) {
   const handleSeeAllCLick = () => {
     router.push(`/courses`);
   };
-
   const cardsPerView = 4;
   return (
     <SectionTemplate title={title} description={description}>
@@ -34,7 +33,7 @@ function CarouselCourse({ title, description, courses }) {
         handleBack={handleBack}
         handleNext={handleNext}
         handleSeeAllCLick={handleSeeAllCLick}
-        coursesLength={courses.data.length}
+        coursesLength={courses.length}
         currentIndex={currentIndex}
       />
       <div
@@ -43,7 +42,7 @@ function CarouselCourse({ title, description, courses }) {
           transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`,
         }}
       >
-        {courses.data.map((item, index) => (
+        {courses.map((item, index) => (
           <div
             key={`${item.courseId}-${index}`}
             className="w-[calc(25%-1rem)] flex-shrink-0"
@@ -56,4 +55,4 @@ function CarouselCourse({ title, description, courses }) {
   );
 }
 
-export default CarouselCourse;
+export default CourseTemplate;

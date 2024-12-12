@@ -1,6 +1,6 @@
 import BannerPage from "@/components/fragments/banner-page";
 import AboutCourseTemplate from "@/components/template/about-course-template";
-import CarouselCourse from "@/components/template/carousel-course";
+import CourseTemplate from "@/components/template/course-template";
 import { fetchDetail, fetchHighlightedCourses } from "@/lib/api";
 
 export default async function DetailList() {
@@ -26,7 +26,7 @@ export default async function DetailList() {
         </div>
       </BannerPage>
       <AboutCourseTemplate />
-      <CarouselCourse courses={courseHighlight} tittle={"Kursus Terkait"} />
+      <CourseTemplate courses={courseHighlight} tittle={"Kursus Terkait"} />
     </div>
   );
 }
