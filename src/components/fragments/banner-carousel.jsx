@@ -21,41 +21,43 @@ const BannerCarousel = ({ banners }) => {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto overflow-hidden bg-[#013451] rounded-xl mb-10">
-      <div
-        className="flex transition-transform duration-500"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-        }}
-      >
-        {banners.map((banner, index) => (
-          <Link
-            href={banner.redirectUrl}
-            key={index}
-            className="relative flex-shrink-0 w-full h-[12rem] md:h-[20rem] lg:h-[25rem] "
-          >
-            <img
-              src={banner.urlBanner}
-              alt={banner.altTag}
-              className="h-full w-[35rem] md:w-[45rem] lg:w-[70rem] mx-auto my-auto rounded-xl"
-            />
-          </Link>
-        ))}
+    <div className="relative max-md:-mx-4">
+      <div className="mx-auto w-full max-w-7xl overflow-hidden bg-[#013451] items-center justify-center content-center mb-10">
+        <div
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+          }}
+        >
+          {banners.map((banner, index) => (
+            <Link
+              href={banner.redirectUrl}
+              key={index}
+              className="relative flex-shrink-0 w-full h-[14rem] md:h-[20rem] lg:h-[25rem] "
+            >
+              <img
+                src={banner.urlBanner}
+                alt={banner.altTag}
+                className="h-full w-[35rem] md:w-[45rem] lg:w-[70rem] mx-auto my-auto rounded-xl"
+              />
+            </Link>
+          ))}
+        </div>
+        <Button
+          onClick={goToPrevious}
+          variant="outline"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200"
+        >
+          <ChevronLeft className="w-6 h-6 text-primary" />
+        </Button>
+        <Button
+          onClick={goToNext}
+          variant="outline"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200"
+        >
+          <ChevronRight className="w-6 h-6 text-primary " />
+        </Button>
       </div>
-      <Button
-        onClick={goToPrevious}
-        variant="outline"
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200"
-      >
-        <ChevronLeft className="w-6 h-6 text-primary" />
-      </Button>
-      <Button
-        onClick={goToNext}
-        variant="outline"
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200"
-      >
-        <ChevronRight className="w-6 h-6 text-primary " />
-      </Button>
     </div>
   );
 };

@@ -13,13 +13,13 @@ function CourseTemplate({ title, description, courses }) {
 
   const handleBack = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? courses.data.length - 1 : prevIndex - 1
+      prevIndex === 0 ? courses.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === courses.data.length - 1 ? 0 : prevIndex + 1
+      prevIndex === courses.length - 1 ? 0 : prevIndex + 1
     );
   };
 
