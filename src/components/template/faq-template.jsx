@@ -20,7 +20,7 @@ export default function FaqTemplate() {
       title={"Yang Sering Ditanyakan"}
       description={"Ada kendala atau pertanyaan? Kami siap membantu!"}
     >
-      <div className="w-full border p-4 mb-5">
+      <div className="w-full border p-4 mt-10 mb-5">
         {loading && <p className="text-primary">Loading...</p>}
         <FaqList faq={faq} />
       </div>

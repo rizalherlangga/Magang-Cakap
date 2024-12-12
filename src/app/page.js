@@ -9,7 +9,11 @@ async function HomePage() {
   return (
     <>
       <HeroDealTemplate banners={banners} />
-      <CarouselCourse tittle={"Kursus Terlaris"} courses={courseHighlight} />
+      <CarouselCourse
+        title={"Kursus Apa Yang Ingin Kamu Pelajari?"}
+        description={"Belajar tanpa batas waktu & bersertifikat!"}
+        courses={courseHighlight}
+      />
       <FaqTemplate />
     </>
   );

@@ -1,10 +1,10 @@
-export default function SectionTemplate({ title, description = "", children }) {
+export default function SectionTemplate({ title, description, children }) {
   return (
     <section>
-      <div className="py-8">
-        <div className="mb-10">
-          <h2 className="text-2xl font-medium text-primary ">{title}</h2>
-          <p>{description}</p>
+      <div className="overflow-hidden w-full my-4 py-4">
+        <div className="mb-2">
+          <span className="text-2xl font-bold text-primary">{title}</span>
+          <p className="text-base text-gray-600">{description}</p>
         </div>
         {children}
       </div>

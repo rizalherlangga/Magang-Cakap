@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "../ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import CourseCard from "../fragments/course-card";
 import { useRouter } from "next/navigation";
+import SectionTemplate from "./section-template";
+import Navigation from "../fragments/navigation";
 
-function CarouselCourse({ tittle, courses }) {
+function CarouselCourse({ title, description, courses }) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -22,49 +23,36 @@ function CarouselCourse({ tittle, courses }) {
     );
   };
 
-  const handleCourseClick = (id) => {
-    router.push(`/courses/${id}`);
+  const handleSeeAllCLick = () => {
+    router.push(`/courses`);
   };
+
   const cardsPerView = 4;
   return (
-    <section className="overflow-hidden w-full my-6">
-      <div className="mb-4">
-        <span className="text-2xl font-medium text-primary">{tittle}</span>
-        <div className="w-full flex gap-2 justify-end">
-          <Button
-            variant="outline"
-            onClick={handleBack}
-            disabled={currentIndex === 0}
-          >
-            <ChevronLeft className="w-6 h-6 text-primary" />
-          </Button>
-          <Button
-            variant="outline"
-            onClick={handleNext}
-            disabled={currentIndex + cardsPerView >= courses.data.length}
-          >
-            <ChevronRight className="w-6 h-6 text-primary" />
-          </Button>
-        </div>
-      </div>
+    <SectionTemplate title={title} description={description}>
+      <Navigation
+        handleBack={handleBack}
+        handleNext={handleNext}
+        handleSeeAllCLick={handleSeeAllCLick}
+        coursesLength={courses.data.length}
+        currentIndex={currentIndex}
+      />
       <div
-        className="w-full flex  transition-transform duration-500"
+        className="w-full flex gap-4 transition-transform duration-500"
         style={{
           transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`,
         }}
       >
-        <div className="flex gap-4  w-full mx-2 ">
-          {courses.data.map((item, index) => (
-            <div
-              key={`${item.courseId}-${index}`}
-              className="w-[calc(25%-1rem)] flex-shrink-0 "
-            >
-              <CourseCard course={item} onClickChange={handleCourseClick} />
-            </div>
-          ))}
-        </div>
+        {courses.data.map((item, index) => (
+          <div
+            key={`${item.courseId}-${index}`}
+            className="w-[calc(25%-1rem)] flex-shrink-0"
+          >
+            <CourseCard course={item} />
+          </div>
+        ))}
       </div>
-    </section>
+    </SectionTemplate>
   );
 }
 
