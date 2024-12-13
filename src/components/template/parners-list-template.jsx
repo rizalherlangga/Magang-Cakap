@@ -1,14 +1,16 @@
 "use client";
 
 import { Button } from "../ui/button";
-import CardLogo from "../fragment/card-logo";
+import BannerPage from "../fragments/banner-page";
+import PartnerListItem from "../fragments/partnerlist-item";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBothPartnersThunk,
   setSelectedCategory,
 } from "@/store/partners-list/partnersListSlice";
 import { useEffect } from "react";
-import CardLogoLoader from "../fragment/card-logo-loader";
+import CardLogoLoader from "../fragments/card-logo-loader";
 
 export default function PartnersListTemplate() {
   const dispatch = useDispatch();
@@ -22,6 +24,16 @@ export default function PartnersListTemplate() {
 
   return (
     <div className="mb-20">
+      <div className="pt-4">
+        <BannerPage>
+          <div className="h-44 relative w-full">
+            <h1 className="text-start font-bold text-3xl absolute bottom-4 w-full">
+              Mitra Upskill
+            </h1>
+          </div>
+        </BannerPage>
+      </div>
+
       <div>
         <Button
           variant="ghost"
@@ -53,16 +65,10 @@ export default function PartnersListTemplate() {
             </p>
 
             {loading && <CardLogoLoader />}
-            <div className="flex flex-wrap gap-6 pt-6 ">
-              {courses.map((item) => (
-                <div key={item.partnerId}>
-                  <CardLogo
-                    imgName={item.partnerName}
-                    imgUrl={item.partnerLogo?.square}
-                  />
-                </div>
-              ))}
-            </div>
+            <PartnerListItem
+              items={courses}
+              classname="justify-center md:justify-normal"
+            />
           </div>
         )}
 
@@ -75,16 +81,7 @@ export default function PartnersListTemplate() {
             </p>
 
             {loading && <CardLogoLoader />}
-            <div className="flex flex-wrap gap-6 pt-6 ">
-              {payments.map((item) => (
-                <div key={item.partnerId}>
-                  <CardLogo
-                    imgName={item.partnerName}
-                    imgUrl={item.partnerLogo?.square}
-                  />
-                </div>
-              ))}
-            </div>
+            <PartnerListItem items={payments} />
           </div>
         )}
       </div>

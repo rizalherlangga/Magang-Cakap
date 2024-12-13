@@ -52,18 +52,45 @@ export const fetchHighlightedCourses = async () => {
   }
 };
 
-export const fetchPartnersList = async ({ partnerType }) => {
+export const fetchPartnersList = async ({ partnerType, showAll, limit }) => {
   try {
     console.log("Fetching partners with partnerType:", partnerType);
     const response = await axiosInstance.get("/partner", {
       params: {
         partnerType,
-        showAll: true,
+        showAll,
+        limit,
       },
     });
     console.log("API Response:", response.data);
     return response.data;
   } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
+
+export const fetchDetail = async (id, platform = "WEB") => {
+  try {
+    const response = await axiosInstance.get(
+      `/course/detail/${id}?platform=${platform}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
+
+export const fetchFaqList = async ({ tenant = "cakap" }) => {
+  try {
+    const response = await axiosInstance.get("/faq", {
+      params: {
+        tenant,
+      },
+    });
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("API Error:", error.response?.data || error.message);
     throw new Error(error.response?.data || error.message);
   }
 };

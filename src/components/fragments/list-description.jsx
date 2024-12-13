@@ -17,7 +17,7 @@ const ListDescription = () => {
   };
 
   return (
-    <div className="w-5/12 p-4 border border-black rounded-lg m-4 bg-slate-300">
+    <div className="p-4 border border-black rounded-lg mt-4 bg-slate-300">
       <div className="py-2 pr-2">
         <h1>TITLE</h1>
       </div>
