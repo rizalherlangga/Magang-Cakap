@@ -14,38 +14,14 @@ export const fetchBothPartnersThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const [course, payment] = await Promise.all([
-        fetchPartnersList({ partnerType: "COURSE" }),
-        fetchPartnersList({ partnerType: "PAYMENT" }),
+        fetchPartnersList({ partnerType: "COURSE", showAll: true }),
+        fetchPartnersList({ partnerType: "PAYMENT", showAll: true }),
       ]);
 
       return {
         courses: course.data.partner,
         payments: payment.data.partner,
       };
-    } catch (error) {
-      return rejectWithValue(error.message || "Failed to fetch categories");
-    }
-  }
-);
-
-export const fetchPartnerCourseThunk = createAsyncThunk(
-  "categories/fetchPartnerCourse",
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await fetchPartnersList("COURSE");
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message || "Failed to fetch categories");
-    }
-  }
-);
-
-export const fetchPartnerPaymentThunk = createAsyncThunk(
-  "categories/fetchPartnerPayment",
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await fetchPartnersList("PAYMENT");
-      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Failed to fetch categories");
     }
@@ -80,38 +56,3 @@ const partnersListSlice = createSlice({
 
 export const { setSelectedCategory } = partnersListSlice.actions;
 export default partnersListSlice.reducer;
-
-// export const fetchBothPartnersThunk = createAsyncThunk(
-//   "partners/fetchBothPartners",
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const [courses, payments] = await Promise.all([
-//         axiosInstance.get("/partner", {
-//           params: {
-//             partnerType: "COURSE",
-//             showAll: true,
-//             search: "",
-//             limit: 10,
-//           },
-//         }),
-//         axiosInstance.get("/partner", {
-//           params: {
-//             partnerType: "PAYMENT",
-//             showAll: true,
-//             search: "",
-//             limit: 10,
-//           },
-//         }),
-//       ]);
-
-//       return {
-//         courses: courses.data,
-//         payments: payments.data,
-//       };
-//     } catch (error) {
-//       return rejectWithValue(
-//         error.response?.data || error.message || "Failed to fetch partners"
-//       );
-//     }
-//   }
-// );

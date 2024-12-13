@@ -52,13 +52,14 @@ export const fetchHighlightedCourses = async () => {
   }
 };
 
-export const fetchPartnersList = async ({ partnerType }) => {
+export const fetchPartnersList = async ({ partnerType, showAll, limit }) => {
   try {
     console.log("Fetching partners with partnerType:", partnerType);
     const response = await axiosInstance.get("/partner", {
       params: {
         partnerType,
-        showAll: true,
+        showAll,
+        limit,
       },
     });
     console.log("API Response:", response.data);

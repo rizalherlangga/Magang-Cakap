@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "../ui/button";
-import CardLogo from "../fragments/card-logo";
 import BannerPage from "../fragments/banner-page";
+import PartnerListItem from "../fragments/partnerlist-item";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -65,16 +65,10 @@ export default function PartnersListTemplate() {
             </p>
 
             {loading && <CardLogoLoader />}
-            <div className="flex flex-wrap gap-6 pt-6 ">
-              {courses.map((item) => (
-                <div key={item.partnerId}>
-                  <CardLogo
-                    imgName={item.partnerName}
-                    imgUrl={item.partnerLogo?.square}
-                  />
-                </div>
-              ))}
-            </div>
+            <PartnerListItem
+              items={courses}
+              classname="justify-center md:justify-normal"
+            />
           </div>
         )}
 
@@ -87,16 +81,7 @@ export default function PartnersListTemplate() {
             </p>
 
             {loading && <CardLogoLoader />}
-            <div className="flex flex-wrap gap-6 pt-6 ">
-              {payments.map((item) => (
-                <div key={item.partnerId}>
-                  <CardLogo
-                    imgName={item.partnerName}
-                    imgUrl={item.partnerLogo?.square}
-                  />
-                </div>
-              ))}
-            </div>
+            <PartnerListItem items={payments} />
           </div>
         )}
       </div>
